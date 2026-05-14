@@ -24,15 +24,30 @@ public class LibraryService {
 	}
 	
 	
-	public Library getStaffNameBySubject(String sub) {
+	public String getStaffNameBySubject(String sub) {
 		Library lib = null;
 		try {
-			lib = list.stream().filter(e-> e.getSubject().equals(sub)).findFirst().get();
+			lib = list.stream().filter(e-> e.getSubject().equalsIgnoreCase(sub)).findFirst().get();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		return lib;
+		if(lib==null)
+			return "Subject not found";
+		
+		return lib.getStaff_name();
+	}
+
+
+	public Library addLibrary(Library section) {
+		list.add(section);
+		return section;
+	}
+
+
+	public List<Library> getAllSections() {
+		
+		return list;
 	}
 
 

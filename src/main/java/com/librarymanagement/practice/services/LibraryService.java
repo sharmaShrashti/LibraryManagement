@@ -2,6 +2,7 @@ package com.librarymanagement.practice.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import com.librarymanagement.practice.entites.Library;
 
 @Service
 public class LibraryService {
+
 
 	public int getRoom() {
 		
@@ -50,5 +52,17 @@ public class LibraryService {
 		return list;
 	}
 
+
+	public Library modifySection(Library lib, String section) {
+		list.stream().map(e->{
+			if (e.getSection_name().equalsIgnoreCase(section)) {
+				e.setStaff_name(lib.getStaff_name());
+				e.setSubject(lib.getSubject());
+			}
+			return e;
+		}).collect(Collectors.toList());
+		return null;
+	}
+	
 
 }

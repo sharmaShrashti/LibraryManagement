@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,6 +45,13 @@ public class LibraryController {
 		
 		return section1;
 		
+	}
+	
+	@PutMapping("library/update/{section}")
+	public Library updateSection(@RequestBody Library lib, @PathVariable String section)
+	{
+		Library updated = libService.modifySection(lib, section);
+		return updated;
 	}
 
 }
